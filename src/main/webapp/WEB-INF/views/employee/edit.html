@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit employee</title>
+</head>
+<body>
+<h1>Edit Employee</h1>
+<p>
+    <a href="/employee/list">Employee list</a>
+</p>
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+<form th:action="@{/employee/edit-employee}" th:object="${employees}" method="post" enctype="multipart/form-data">
+    <input th:type="hidden" name="id" th:field="*{id}">
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td><input type="text" th:field="*{firstName}"/></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td><input type="text" th:field="*{lastName}"/></td>
+        </tr>
+        <tr>
+            <td>birthDate:</td>
+            <td><input type="text" th:field="*{birthDate}"></td>
+        </tr>
+        <tr>
+            <td>address:</td>
+            <td><input type="text" th:field="*{address}"></td>
+        </tr>
+        <tr>
+            <td>Salary:</td>
+            <td><input type="text" th:field="*{salary}"></td>
+        </tr>
+        <td><img width="150px" height="150px" th:src="@{'/i/' + ${employees.image}}"></td>
+        <td>Image:</td>
+            <td>
+                <input type="file" th:field="*{image}"/>
+           </td>
+        <tr>
+            <td>Department:</td>
+            <td>
+                <select name="department">
+                    <option th:each="p : ${department}"
+                            th:value="${p.id}"
+                            th:text="${p.name}"
+                            th:selected="(${p.id} == *{department.id})"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update employee"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
