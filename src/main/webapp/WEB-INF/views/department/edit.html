@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Edit Department</title>
 </head>
@@ -15,7 +15,7 @@
 </th:block>
 <form th:action="@{/edit-department}" th:object="${department}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
+    <table id="department">
         <tr>
             <td>First name:</td>
             <td><input type="text" th:field="*{name}"/></td>
@@ -26,5 +26,6 @@
         </tr>
     </table>
 </form>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

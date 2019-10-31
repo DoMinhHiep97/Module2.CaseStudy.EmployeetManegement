@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>View Department</title>
 </head>
 <body>
-<h1>View province: <span th:text="${department.name}"></span></h1>
+<h1>View Department: <span th:text="${department.name}"></span></h1>
 <a href="/department">Province list</a>
-<table border="1">
+<table border="1" id="department">
     <tr>
         <th>First name</th>
         <th>Last name</th>
@@ -19,5 +19,6 @@
         </tr>
     </th:block>
 </table>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

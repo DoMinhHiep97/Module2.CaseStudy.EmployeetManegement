@@ -42,7 +42,7 @@ public class EmployeeController {
         return departmentService.findAll();
     }
     @GetMapping("/list")
-    public ModelAndView listEmployee(@RequestParam("s")Optional<String> s,@PageableDefault(value = 5) Pageable pageable){
+    public ModelAndView listEmployee(@RequestParam("s")Optional<String> s,@PageableDefault(value = 3,sort = "salary") Pageable pageable){
         Page<Employee> employees;
         if(s.isPresent()){
             employees=employeeService.findAllByFirstNameContaining(s.get(), pageable);
@@ -143,6 +143,7 @@ public class EmployeeController {
     @PostMapping("/delete-employee")
     public String deleteDelete(@ModelAttribute("employee") Employee employee){
         employeeService.remove(employee.getId());
-        return "redirect:employee/list";
+        return "redirect:list";
     }
+
 }

@@ -13,4 +13,5 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
     Iterable<Employee> findAllByDepartment(Department department);
 
     Page<Employee> findAllByFirstNameContaining(String firstName, Pageable pageable);
+
 }

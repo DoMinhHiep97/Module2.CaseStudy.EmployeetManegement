@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Edit employee</title>
 </head>
@@ -14,7 +14,7 @@
 </th:block>
 <form th:action="@{/employee/edit-employee}" th:object="${employees}" method="post" enctype="multipart/form-data">
     <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
+    <table id="employees">
         <tr>
             <td>First name:</td>
             <td><input type="text" th:field="*{firstName}"/></td>
@@ -35,11 +35,13 @@
             <td>Salary:</td>
             <td><input type="text" th:field="*{salary}"></td>
         </tr>
-        <td><img width="150px" height="150px" th:src="@{'/i/' + ${employees.image}}"></td>
         <td>Image:</td>
+
+
             <td>
                 <input type="file" th:field="*{image}"/>
            </td>
+        <td><img width="200px" height="150px" th:src="@{'/i/' + ${employees.image}}"></td>
         <tr>
             <td>Department:</td>
             <td>
@@ -57,5 +59,6 @@
         </tr>
     </table>
 </form>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

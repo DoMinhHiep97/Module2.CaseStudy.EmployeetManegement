@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<a href="/employee/create-employee">Create new employee</a>
-<h1>Employees</h1>
+
+<center><h1>Employees</h1></center>
+<br>
+<!--<a href="/employee/create-employee">Create new employee</a>-->
+<br>
+<br>
 <form>
-    Search by first name:
+    <span> Search by first name:</span><br>
+
     <input name="s" type="text"/>
     <input type="submit" value="Search"/>
-</form><br/>
-<table border="1">
+</form>
+<button type="button" onclick="window.location.href='/employee/create-employee'">Create new employee</button>
+<button type="button" onclick="window.location.href='/department'">Search with department name</button>
+<br>
+<br/>
+<table border="1" id="employees">
     <tr>
         <th>First name</th>
         <th>Last name</th>
@@ -31,17 +40,18 @@
             <td th:text="${employees.birthDate}"></td>
             <td th:text="${employees.address}"></td>
             <td th:text="${employees.salary}"></td>
-            <td><img width="150px" height="150px" th:src="@{'/i/' + ${employees.image}}"></td>
+            <td><img width="200px" height="150px" th:src="@{'/i/' + ${employees.image}}"></td>
             <td th:text="${employees.department.name}"></td>
             <td><a th:href="@{/employee/edit-employee/__${employees.id}__ }">Edit</a></td>
             <td><a th:href="@{/employee/delete-employee/__${employees.id}__ }">Delete</a></td>
         </tr>
     </th:block>
 </table>
-<div>
+<div id="form">
     <a th:href="@{'/employee/list'(page=${employee.number - 1})}" th:if="${employee.hasPrevious()}">Previous</a>
     <span th:text="${employee.number + 1}"></span>/<span th:text="${employee.totalPages}"></span>
     <a th:href="@{'/employee/list'(page=${employee.number + 1})}" th:if="${employee.hasNext()}">Next</a>
 </div>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

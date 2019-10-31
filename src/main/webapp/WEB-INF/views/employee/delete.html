@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Delete employee</title>
 </head>
@@ -12,7 +12,7 @@
 </p>
 <form th:action="@{/employee/delete-employee}" th:object="${employee}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
-    <table>
+    <table id="employees">
         <tr>
             <td>First name:</td>
             <td th:text="${employee.firstName}"></td>
@@ -31,18 +31,19 @@
         </tr>
         <tr>
             <td>Department:</td>
-            <td th:text="${employee.department}"></td>
+            <td th:text="${employee.department.name}"></td>
         </tr>
         <tr>
             <td>Salary:</td>
             <td th:text="${employee.salary}"></td>
         </tr>
-        <td><img width="150px" height="150px" th:src="@{'/i/' + ${employee.image}}"></td>
+        <td><img width="200px" height="150px" th:src="@{'/i/' + ${employee.image}}"></td>
         <tr>
             <td></td>
             <td><input type="submit" value="Delete delete"></td>
         </tr>
     </table>
 </form>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

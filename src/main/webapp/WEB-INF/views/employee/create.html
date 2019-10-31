@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Create employee</title>
 </head>
@@ -13,7 +13,7 @@
     <p th:text="${message}"></p>
 </th:block>
 <form th:action="@{/employee/save-employee}" th:object="${employeeForm}" method="post" enctype="multipart/form-data">
-    <table>
+    <table id="employees">
         <tr>
             <td>First name:</td>
             <td><input type="text" th:field="*{firstName}"/></td>
@@ -52,5 +52,6 @@
         </tr>
     </table>
 </form>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>

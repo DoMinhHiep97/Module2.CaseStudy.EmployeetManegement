@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:replace="/layout :: head">
     <meta charset="UTF-8">
     <title>Create department</title>
 </head>
@@ -14,7 +14,7 @@
     <p th:text="${message}"></p>
 </th:block>
 <form th:action="@{/create-department}" th:object="${department}" method="post">
-    <table>
+    <table id="department">
         <tr>
             <td>Name:</td>
             <td><input type="text" th:field="*{name}"/></td>
@@ -25,5 +25,6 @@
         </tr>
     </table>
 </form>
+<footer th:replace="layout :: footer"></footer>
 </body>
 </html>
